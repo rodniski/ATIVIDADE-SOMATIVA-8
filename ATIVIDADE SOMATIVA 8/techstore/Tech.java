@@ -7,8 +7,9 @@ public abstract class Tech implements Serializable {
 	private   String marca;
 	private   String modelo;
 	private   float preco;
+	protected String produto;
 
-    public Tech(String nome, int idade, String dono) {
+    public Tech(String nome, String modelo, float preco) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.preco = preco;
@@ -18,6 +19,10 @@ public abstract class Tech implements Serializable {
 		retorno += "Marca: "  +this.marca  + "\n";
 		retorno += "Modelo: " +this.modelo + "\n";
 		retorno += "Preco: "  +this.preco  + "\n";
+		retorno += "Produto: "  + this.produto  + "\n";
+		retorno += "Ligado: " + ligar() +"\n";
 		return retorno;
 	}	
+	public abstract boolean ligar();
+
 }
