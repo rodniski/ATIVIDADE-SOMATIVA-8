@@ -4,25 +4,22 @@ import java.io.Serializable;
 
 public abstract class Tech implements Serializable {
     private static final long serialVersionUID = 1L;
-	private   String marca;
-	private   String modelo;
-	private   float preco;
+	public   String marca;
+	public   String modelo;
+	public   int preco;
 	protected String produto;
 
-    public Tech(String nome, String modelo, float preco) {
+    public Tech(String marca, String modelo, int preco) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.preco = preco;
 	}
 	public String toString() {
 		String retorno = "";
+		retorno += "Produto: "  + this.produto  + "\n";
 		retorno += "Marca: "  +this.marca  + "\n";
 		retorno += "Modelo: " +this.modelo + "\n";
-		retorno += "Preco: "  +this.preco  + "\n";
-		retorno += "Produto: "  + this.produto  + "\n";
-		retorno += "Ligado: " + ligar() +"\n";
-		return retorno;
+		retorno += "Preco: R$"  +this.preco  + ",00\n";
+				return retorno;
 	}	
-	public abstract boolean ligar();
-
 }

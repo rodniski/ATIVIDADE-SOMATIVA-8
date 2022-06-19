@@ -29,7 +29,7 @@ public class TechStore {
     public Celular leCelular() {
 
         String[] valores = new String[3];
-        String[] nomeVal = { "Modelo", "Marca", "Camera", "Preço" };
+        String[] nomeVal = { "Marca","Modelo", "Camera", "Preco" };
         valores = leValores(nomeVal);
 
         int camera = this.retornaInteiro(valores[2]);
@@ -42,7 +42,7 @@ public class TechStore {
     public Notebook leNotebook() {
 
         String[] valores = new String[3];
-        String[] nomeVal = { "Marca", "Modelo", "processador", "preco" };
+        String[] nomeVal = { "Marca", "Modelo", "Processador", "Preco" };
         valores = leValores(nomeVal);
 
         int preco = this.retornaInteiro(valores[3]);
@@ -54,7 +54,7 @@ public class TechStore {
     public Relogio leRelogio() {
 
         String[] valores = new String[3];
-        String[] nomeVal = { "Marca", "Modelo", "pulseira", "preco" };
+        String[] nomeVal = { "Marca", "Modelo", "Pulseira", "Preco" };
         valores = leValores(nomeVal);
 
         int preco = this.retornaInteiro(valores[3]);
@@ -118,7 +118,7 @@ public class TechStore {
                 }
             }
         } catch (EOFException ex) {
-            System.out.println("Fim de arquivo");
+            
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (FileNotFoundException ex) {
