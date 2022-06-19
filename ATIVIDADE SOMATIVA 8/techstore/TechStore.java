@@ -1,5 +1,4 @@
-package techstore;
-
+import java.util.ArrayList;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,216 +6,229 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
 public class TechStore {
-	private ArrayList<Tech> tech;
+    private ArrayList<Tech> tech;
 
-	public TechStore() {
+    public techStore() {
 		this.tech = new ArrayList<Tech>();
 	}
-	public String[] leValores (String [] dadosIn){
-		String [] dadosOut = new String [dadosIn.length];
 
-		for (int i = 0; i < dadosIn.length; i++)
-			dadosOut[i] = JOptionPane.showInputDialog  ("Entre com " + dadosIn[i]+ ": ");
+    public String[] leValores(String[] dadosIn) {
+        String[] dadosOut = new String[dadosIn.length];
 
-		return dadosOut;
-	}
+        for (int i = 0; i < dadosIn.length; i++)
+            dadosOut[i] = JOptionPane.showInputDialog("Entre com " + dadosIn[i] + ": ");
 
-	public Notebook leNotebook (){
+        return dadosOut;
+    }
 
-		String [] valores = new String [3];
-		String [] nomeVal = {"Marca", "Modelo", "Processador", "Preco"};
-		valores = leValores (nomeVal);
+    public Celular leCelular() {
 
-		int preco = this.retornaInteiro(valores[3]);
+        String[] valores = new String[3];
+        String[] nomeVal = { "Modelo", "Marca", "Camera", "Preço" };
+        valores = leValores(nomeVal);
 
+        int camera = this.retornaInteiro(valores[2]);
+        int preco = this.retornaInteiro(valores[3]);
 
-		Notebook notebook = new Notebook (valores[0], valores[1], preco);
-		return notebook;
-	}
+        Celular celular = new Celular(valores[0], valores[1], camera, preco);
+        return celular;
+    }
 
-	public Cao leCao (){
+    public Notebook leNotebook() {
 
-		String [] valores = new String [3];
-		String [] nomeVal = {"Nome", "Idade", "Dono"};
-		valores = leValores (nomeVal);
+        String[] valores = new String[3];
+        String[] nomeVal = { "Marca", "Modelo", "processador", "preco" };
+        valores = leValores(nomeVal);
 
-		int idade = this.retornaInteiro(valores[1]);
+        int preco = this.retornaInteiro(valores[3]);
 
-		Cao cao = new Cao (valores[0],idade,valores[2]);
-		return cao;
-	}
+        Notebook notebook = new Notebook(valores[0], valores[1], valores[2], preco);
+        return notebook;
+    }
 
-	private boolean intValido(String s) {
-		try {
-			Integer.parseInt(s); // Método estático, que tenta tranformar uma string em inteiro
-			return true;
-		} catch (NumberFormatException e) { // Não conseguiu tranformar em inteiro e gera erro
-			return false;
-		}
-	}
-	public int retornaInteiro(String entrada) { // retorna um valor inteiro
-		int numInt;
+    public Relogio leRelogio() {
 
-		//Enquanto não for possível converter o valor de entrada para inteiro, permanece no loop
-		while (!this.intValido(entrada)) {
-			entrada = JOptionPane.showInputDialog(null, "Valor incorreto!\n\nDigite um numero inteiro.");
-		}
-		return Integer.parseInt(entrada);
-	}
+        String[] valores = new String[3];
+        String[] nomeVal = { "Marca", "Modelo", "pulseira", "preco" };
+        valores = leValores(nomeVal);
 
-	public void salvaTech (ArrayList<Tech> tech){
-		ObjectOutputStream outputStream = null;
-		try {
-			outputStream = new ObjectOutputStream 
-					(new FileOutputStream("c:\\temp\\techStore.dados"));
-			for (int i=0; i < mamiferos.size(); i++)
-				outputStream.writeObject(mamiferos.get(i));
-		} catch (FileNotFoundException ex) {
-			JOptionPane.showMessageDialog(null,"Impossivel criar arquivo!");
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {  //Close the ObjectOutputStream
-			try {
-				if (outputStream != null) {
-					outputStream.flush();
-					outputStream.close();
-				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
+        int preco = this.retornaInteiro(valores[3]);
 
-	@SuppressWarnings("finally")
-	public ArrayList<Mamifero> recuperaMamiferos (){
-		ArrayList<Mamifero> mamiferosTemp = new ArrayList<Mamifero>();
+        Relogio relogio = new Relogio(valores[0], valores[1], valores[2], preco);
+        return relogio;
+    }
 
-		ObjectInputStream inputStream = null;
+    private boolean intValido(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
-		try {	
-			inputStream = new ObjectInputStream
-					(new FileInputStream("c:\\temp\\petStore.dados"));
-			Object obj = null;
-			while ((obj = inputStream.readObject()) != null) {
-				if (obj instanceof Mamifero) {
-					mamiferosTemp.add((Mamifero) obj);
-				}   
-			}          
-		} catch (EOFException ex) { // when EOF is reached
-			System.out.println("Fim de arquivo.");
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (FileNotFoundException ex) {
-			JOptionPane.showMessageDialog(null,"Arquivo com mamíferos NÃO existe!");
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {  //Close the ObjectInputStream
-			try {
-				if (inputStream != null) {
-					inputStream.close();
-				}
-			} catch (final IOException ex) {
-				ex.printStackTrace();
-			}
-			return mamiferosTemp;
-		}
-	}
+    public int retornaInteiro(String entrada) {
 
-	public void menuPetStore (){
+        while (!this.intValido(entrada)) {
+            entrada = JOptionPane.showInputDialog(null,
+                    "Valor de " + entrada + " incorreto!\n\nDigite um numero inteiro como opção.");
+        }
+        return Integer.parseInt(entrada);
+    }
 
-		String menu = "";
-		String entrada;
-		int    opc1, opc2;
+    public void salvaProdutos(ArrayList<Tech> tech) {
+        ObjectOutputStream outputStream = null;
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream("c:\\temp\\Store.dados"));
+            for (int i = 0; i < tech.size(); i++)
+                outputStream.writeObject(tech.get(i));
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Impossivel criar arquivo!");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.flush();
+                    outputStream.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
-		do {
-			menu = "Controle PetStore\n" +
-					"Opções:\n" + 
-					"1. Entrar Mamíferos\n" +
-					"2. Exibir Mamíferos\n" +
-					"3. Limpar Mamíferos\n" +
-					"4. Gravar Mamíferos\n" +
-					"5. Recuperar Mamíferos\n" +
-					"9. Sair";
-			entrada = JOptionPane.showInputDialog (menu + "\n\n");
-			opc1 = this.retornaInteiro(entrada);
+    public ArrayList<Tech> recuperaProdutos() {
+        ArrayList<Tech> ProdutoTemp = new ArrayList<Tech>();
 
-			switch (opc1) {
-			case 1:// Entrar dados
-				menu = "Entrada de Animais Mamíferos\n" +
-						"Opções:\n" + 
-						"1. Cão\n" +
-						"2. Gato\n";
+        ObjectInputStream inputStream = null;
 
-				entrada = JOptionPane.showInputDialog (menu + "\n\n");
-				opc2 = this.retornaInteiro(entrada);
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream("C:\\Windows\\Temp\\techstore.dados"));
+            Object obj = null;
+            while ((obj = inputStream.readObject()) != null) {
+                if (obj instanceof Tech) {
+                    ProdutoTemp.add((Tech) obj);
+                }
+            }
+        } catch (EOFException ex) {
+            System.out.println("Fim de arquivo");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "===================================           \n" +
+                            "       O arquivo com produtos nao existe!\n" +
+                            "===================================\n");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+        }
+        return ProdutoTemp;
+    }
 
-				switch (opc2){
-				case 1: mamiferos.add((Mamifero)leCao());
-				break;
-				case 2: mamiferos.add((Mamifero)leGato());
-				break;
-				default: 
-					JOptionPane.showMessageDialog(null,"Animal mamífero para entrada NÃO escolhido!");
-				}
+    public void menuTechStore() {
 
-				break;
-			case 2: // Exibir dados
-				if (mamiferos.size() == 0) {
-					JOptionPane.showMessageDialog(null,"Entre com animais mamíferos primeiramente");
-					break;
-				}
-				String dados = "";
-				for (int i=0; i < mamiferos.size(); i++)	{
-					dados += mamiferos.get(i).toString() + "---------------\n";
-				}
-				JOptionPane.showMessageDialog(null,dados);
-				break;
-			case 3: // Limpar Dados
-				if (mamiferos.size() == 0) {
-					JOptionPane.showMessageDialog(null,"Entre com animais mamíferos primeiramente");
-					break;
-				}
-				mamiferos.clear();
-				JOptionPane.showMessageDialog(null,"Dados LIMPOS com sucesso!");
-				break;
-			case 4: // Grava Dados
-				if (mamiferos.size() == 0) {
-					JOptionPane.showMessageDialog(null,"Entre com animais mamíferos primeiramente");
-					break;
-				}
-				salvaMamiferos(mamiferos);
-				JOptionPane.showMessageDialog(null,"Dados SALVOS com sucesso!");
-				break;
-			case 5: // Recupera Dados
-				mamiferos = recuperaMamiferos();
-				if (mamiferos.size() == 0) {
-					JOptionPane.showMessageDialog(null,"Sem dados para apresentar.");
-					break;
-				}
-				JOptionPane.showMessageDialog(null,"Dados RECUPERADOS com sucesso!");
-				break;
-			case 9:
-				JOptionPane.showMessageDialog(null,"Fim do aplicativo PETSTORE");
-				break;
-			}
-		} while (opc1 != 9);
-	}
+        String menu = "";
+        String entrada;
+        int opc1, opc2;
 
+        do {
+            menu = "Controle de Produtos da Loja - TechStore\n" +
+                    "Opcoes:\n" +
+                    "1. Entrar Produtos\n" +
+                    "2. Exibir Produtos\n" +
+                    "3. Limpar Produtos\n" +
+                    "4. Gravar Produtos\n" +
+                    "5. Recuperar Produtos\n" +
+                    "9. Sair";
+            entrada = JOptionPane.showInputDialog(menu + "\n\n");
+            opc1 = this.retornaInteiro(entrada);
 
-	public static void main (String [] args){
+            switch (opc1) {
+                case 1:
+                    menu = "Entrada de Produtos\n" +
+                            "Opcoes:\n" +
+                            "1. Celular\n" +
+                            "2. Notebook\n" +
+                            "3. Relogio\n";
 
-		PetStore pet = new PetStore ();
-		pet.menuPetStore();
+                    entrada = JOptionPane.showInputDialog(menu + "\n\n");
+                    opc2 = this.retornaInteiro(entrada);
 
-	}
+                    switch (opc2) {
+                        case 1:
+                            tech.add((Tech) leCelular());
+                            break;
+                        case 2:
+                            tech.add((Tech) leNotebook());
+                            break;
+                        case 3:
+                            tech.add((Tech) leRelogio());
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Produto para entrada NAO escolhido!");
+                    }
 
+                    break;
+                case 2:
+                    if (tech.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "Entre com produtos primeiramente");
+                        break;
+                    }
+                    String dados = "";
+                    for (int i = 0; i < tech.size(); i++) {
+                        dados += tech.get(i).toString() + "---------------\n";
+                    }
+                    JOptionPane.showMessageDialog(null, dados);
+                    break;
+                case 3:
+                    if (tech.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "Entre com produtos primeiramente");
+                        break;
+                    }
+                    tech.clear();
+                    JOptionPane.showMessageDialog(null, "Dados LIMPOS com sucesso!");
+                    break;
+                case 4:
+                    if (tech.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "Entre com produtos primeiramente");
+                        break;
+                    }
+                    salvaProdutos(tech);
+                    JOptionPane.showMessageDialog(null, "Dados SALVOS com sucesso!");
+                    break;
+                case 5:
+                    tech = recuperaProdutos();
+                    if (tech.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "Sem dados para apresentar.");
+                        break;
+                    }
+                    JOptionPane.showMessageDialog(null, "Dados RECUPERADOS com sucesso!");
+                    break;
+                case 9:
+                    JOptionPane.showMessageDialog(null, "Encerrando... TechStore - Volte Sempre!");
+                    break;
+            }
+        } while (opc1 != 9);
+    }
+
+    public static void main(String[] args) {
+
+        TechStore pet = new TechStore();
+        pet.menuTechStore();
+
+    }
 }

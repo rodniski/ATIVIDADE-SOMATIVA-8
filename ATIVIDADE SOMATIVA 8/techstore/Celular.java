@@ -12,7 +12,7 @@ public class Celular extends Tech{
     public boolean ligar() {
         return true;
     }
-    public Celular(String marca, String modelo, float preco) {
+    public Celular(String marca, String modelo, int camera ,int preco) {
 		super(marca, modelo, preco);
 		this.produto = "Celular";        
 	}

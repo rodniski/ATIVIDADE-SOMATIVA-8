@@ -9,7 +9,7 @@ public class Relogio extends Tech{
     public boolean ligar() {
         return true;
     }
-    public Relogio(String marca, String modelo, float preco) {
+    public Relogio(String marca, String modelo, String pulseira, int preco) {
 		super(marca, modelo, preco);
 		this.produto = "Relogio";        
 	}
