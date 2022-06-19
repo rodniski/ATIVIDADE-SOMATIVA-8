@@ -1,4 +1,4 @@
 package techstore;
-public class Tech {
+public class TechStore {
     
 }
