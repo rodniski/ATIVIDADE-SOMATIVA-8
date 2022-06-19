@@ -1,3 +1,4 @@
+package techstore;
 import java.util.ArrayList;
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
 public class TechStore {
     private ArrayList<Tech> tech;
 
-    public techStore() {
+    public TechStore() {
 		this.tech = new ArrayList<Tech>();
 	}
 
