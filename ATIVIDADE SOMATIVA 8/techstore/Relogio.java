@@ -7,7 +7,8 @@ public class Relogio extends Tech{
     
     public Relogio(String marca, String modelo, String pulseira, int preco) {
 		super(marca, modelo, preco);
-		this.produto = "Relogio";        
+		this.produto = "Relogio";    
+        this.pulseira = pulseira;    
 	}
     public void setPulseira(String pulseira){
         this.pulseira = pulseira;

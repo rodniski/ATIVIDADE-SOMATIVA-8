@@ -7,6 +7,7 @@ public class Notebook extends Tech {
     public Notebook(String marca, String modelo, String processador, int preco) {
         super(marca, modelo, preco);
         this.produto = "Notebook";
+        this.processador = processador;
     }
 
     public void setProcessador(String processador) {

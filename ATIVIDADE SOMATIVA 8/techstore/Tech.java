@@ -14,12 +14,4 @@ public abstract class Tech implements Serializable {
 		this.modelo = modelo;
 		this.preco = preco;
 	}
-	public String toString() {
-		String retorno = "";
-		retorno += "Produto: "  + this.produto  + "\n";
-		retorno += "Marca: "  +this.marca  + "\n";
-		retorno += "Modelo: " +this.modelo + "\n";
-		retorno += "Preco: R$"  +this.preco  + ",00\n";
-				return retorno;
-	}	
 }
