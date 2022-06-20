@@ -1,0 +1,42 @@
+ATIVIDADE SOMATIVA 2 - SEMANA 8 - JAVA E PROGRAMAÇÃO ORIENTADA A OBJETOS
+
+PARTICIPANTES: GUILHERME RODNISKI CORREIA
+				ELIFIO DA SILVA JUNIOR.
+
+				
+								OPÇÃO ESCOLHIDA:
+
+Loja de eletrônicos
+
+	1.Equipamento 
+
+		o Smartphone 
+
+		o Smartwatch 
+
+		o Notebook 
+
+							QUESITOS A SER AVALIADOS
+
+1. Modelagem de classes com herança, realizada com o auxílio de ferramenta (PowerPoint ou Word,
+por exemplo).
+
+	a) Cada equipe deve definir sua organização própria de classes com herança, visando a aproveitar os recursos do polimorfismo.
+
+	b) Com um domínio de aplicação selecionado/definido, a equipe deve adaptar o exemplo dado (PetStore) para o domínio de aplicação escolhido.
+
+	c) Sugestões de classes possíveis estão disponibilizadas no fim deste documento.
+
+2. Polimorfismo entre classes.
+
+	d) Sobrescrita (@override) de métodos.
+
+	e) Referências polimórficas.
+
+	f) Controle de repetição usado em coleção de objetos (ArrayList).
+
+3. Gravação e recuperação de objetos em arquivo.
+
+4. Utilização da estrutura switch para controle de menu de opções.
+
+5. Utilização de tratamento de exceções para manipulação de arquivos.
